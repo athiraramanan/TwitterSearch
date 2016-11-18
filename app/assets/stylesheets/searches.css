@@ -80,3 +80,12 @@
     background: #eee;
     padding: 19px;
 }
+.retweet-action-text{
+    width: 100%;
+    padding: 10px;
+    display: inline-block;
+}
+.retweet-action-text span{
+    font-style: italic;
+    display: inline-block;
+}

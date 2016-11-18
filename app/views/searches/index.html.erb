@@ -1,36 +1,39 @@
 <div class="container">
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Searches</h1>
+<h1>TWEETS</h1>
 
 <table>
-  <thead>
-    <tr>
-      <th>Search text</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  
 
   <tbody>
   <div class="top-searcharea">
     <%= form_tag searches_path, :method => 'get'  do %>
-      <%= text_field_tag :search_text, params[:search_text]%>
-      <%= text_field_tag :tweet_date, params[:tweet_date]%>
-    <%= text_field_tag :tweet_data, params[:tweet_data]%>
+      <%= text_field_tag :search_text, params[:search_text],placeholder: "Keyword"%>
+      <%= date_field_tag :tweet_date, params[:tweet_date],placeholder: "Date"%>
+    
+    <%= select_tag "tweet_data", options_for_select([ "Tweeted", "Retweeted" ], "#{@data_query}") %>
       <%= submit_tag "Search", :name => nil  %>
     <% end %>
+    </div>
+    <div>
+      <%= link_to 'Dash Board', dash_board_index_path %>
+    </div>
+    <div>
+     <%= link_to 'Reset All', searches_path %>
     </div>
     
     <% if @searches.present? %>
       <%= paginate @searches %>
       <% @searches.each do |search| %>
+
         <div class="tweet_card">
           
           <div class="tweet_body">
             <div class="TweetAuthor">
               <a class="TweetAuthor-link Identity u-linkBlend" data-scribe="element:user_link" href="">
                 <span class="TweetAuthor-avatar Identity-avatar">
-                  <%= image_tag(search.user.profile_image_url, :alt => "rss feed", :class=>"Avatar") %>
+                  <%= image_tag(search.user.profile_image_url, :alt => "Nothing to show", :class=>"Avatar") %>
                 </span>
                 <span class="TweetAuthor-name" >
                   <%= search.user.name %>
@@ -69,15 +72,25 @@
                 <span class="TweetAction-stat"><%= search.favorite_count %></span>
               </li>
             </ul>
+            <% if search.retweeted_status.present? %>
+              <div class="clear"></div>
+              <div class="retweet-action-text">
+                <h3>Retweeted:</h3>
+                <%= search.retweeted_status.text %>
+                <span>[ <%= search.retweeted_status.created_at %> ]</span>
+              </div>
+            <% end %>
           </div>
 
         </div>
       <% end %>
       <%= paginate @searches %>
+    <% else %>
+    <h1>Nothing to Show</h1>
     <%end %>
   </tbody>
 </table>
 
 <br>
 </div>
-<%= link_to 'New Search', new_search_path %>
+
