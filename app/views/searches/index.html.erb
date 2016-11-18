@@ -1,0 +1,83 @@
+<div class="container">
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Searches</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Search text</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <div class="top-searcharea">
+    <%= form_tag searches_path, :method => 'get'  do %>
+      <%= text_field_tag :search_text, params[:search_text]%>
+      <%= text_field_tag :tweet_date, params[:tweet_date]%>
+    <%= text_field_tag :tweet_data, params[:tweet_data]%>
+      <%= submit_tag "Search", :name => nil  %>
+    <% end %>
+    </div>
+    
+    <% if @searches.present? %>
+      <%= paginate @searches %>
+      <% @searches.each do |search| %>
+        <div class="tweet_card">
+          
+          <div class="tweet_body">
+            <div class="TweetAuthor">
+              <a class="TweetAuthor-link Identity u-linkBlend" data-scribe="element:user_link" href="">
+                <span class="TweetAuthor-avatar Identity-avatar">
+                  <%= image_tag(search.user.profile_image_url, :alt => "rss feed", :class=>"Avatar") %>
+                </span>
+                <span class="TweetAuthor-name" >
+                  <%= search.user.name %>
+                </span>
+                <br/>
+                <span class="TweetAuthor-screenName" >
+                  @<%= search.user.screen_name %>
+                </span>
+              </a>
+            </div>
+            <div class="Tweet-body">
+              <p class="Tweet-text" lang="en" dir="ltr">
+                <%= search.text %>
+              </p>
+            </div>
+            <div class="Tweet-metadata dateline">
+              <a href="#">
+                <%= search.created_at %>
+              </a>
+            </div>
+
+          </div>
+
+          <div class="tweet_heading">
+            <!-- <span>User : </span> -->
+            <%= image_tag(search.user.profile_banner_url, :alt => "rss feed") %>
+            <ul class="Tweet-actions">
+              <li class="Tweet-action">
+                <%= search.retweet_count %>
+              </li>
+              <li class="Tweet-action">
+                <%= search.retweet_count %>
+              </li>
+              <li class="Tweet-action">
+                <div class="retweet"></div>
+                <span class="TweetAction-stat"><%= search.favorite_count %></span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      <% end %>
+      <%= paginate @searches %>
+    <%end %>
+  </tbody>
+</table>
+
+<br>
+</div>
+<%= link_to 'New Search', new_search_path %>

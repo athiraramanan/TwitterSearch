@@ -1,0 +1,49 @@
+
+
+    <% @user_array= Array.new %>
+    <% @retweet_count= 0 %>
+    <% @retweet_count_array= Array.new %>
+     <% @user_array_count= 0 %>
+    <%if @tweets.present?%>
+      <%@tweets.each do |tweet|%>
+        <% @user_array<<tweet.user.id%>
+		<% @retweet_count_array<<tweet.retweet_count %>
+        <%@retweet_count=@retweet_count+tweet.retweet_count%>
+      <%end%>
+    <%end%>
+    <% @user_array_count=@user_array.uniq.count%>
+
+
+<div class="dashboard-box">
+
+<div class="search-block-dashboard">
+  <%= form_tag dash_board_index_path, :method => 'get'  do %>
+      <%= text_field_tag :tweet_text, params[:tweet_text]%>
+      <%= submit_tag "Search", :name => nil  %>
+    <% end %>
+</div>
+
+  <ul>
+    <li>
+      <h3>Number of Users</h3>
+      <p><%= @user_array_count%></p>
+    </li>
+  <%if @tweets.present?%>
+    <li>
+      <h3>Tweets</h3>
+      <p><%= @tweets.count%></p>
+    </li>
+
+  
+    <li>
+      <h3>Retweets count</h3>
+      <p><%= @retweet_count%></p>
+    </li>
+    <%end%>
+  </ul>
+</div>
+
+
+<br>
+
+

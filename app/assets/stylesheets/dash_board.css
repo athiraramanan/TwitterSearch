@@ -1,0 +1,28 @@
+.dashboard-box ul li{
+	margin-right: 80px;
+    float: left;
+    display: inline-block;
+    text-align: center;
+}
+.dashboard-box{
+     width: 650px;
+    height: 250px;
+    border: solid thin #ccc;
+    margin: 0 auto;
+    background: #fff;
+    padding-top: 70px;
+    margin-top: 90px;
+}
+.search-block-dashboard{
+	width: 218px;
+	margin: 0 auto;
+}
+.dashboard-box ul li h3{
+	color: #757373;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+.dashboard-box ul li p{
+	font-size: 30px;
+    font-weight: 600;
+}

@@ -1,0 +1,82 @@
+ body{
+ 	background: #eee;
+ }
+ .container{
+	width:600px;
+	margin:0 auto;
+	background: #fff;
+    padding: 10px;
+}
+.TweetAuthor-avatar img{
+	float: left;
+}
+.TweetAuthor-name {
+    margin-left: 15px;
+    font-size: 18px;
+    color: #000;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+.TweetAuthor-screenName{
+	margin-left: 15px;
+}
+.tweet_card{
+	margin: 40px 0;
+	border: solid thin #ccc;
+    padding: 20px;
+    border-radius: 10px;
+}
+.Tweet-metadata.dateline a{
+	color: #1b95e0;
+    font-size: 14px;
+    font-weight: 500;
+}
+.Tweet-text{
+	font-size: 15px;
+}
+.TweetAuthor a{
+	text-decoration: none;
+}
+.TweetAuthor a:hover{
+	background-color: transparent;
+	color: #666;
+}
+.Tweet-actions li{
+	float: left;
+    width: 50px;
+    display: inline-block;
+}
+.tweet_heading{
+	margin-top: 20px;
+}
+#search_text{
+	width: 86%;
+    height: 25px;
+    padding: 4px;
+    margin-bottom: 20px;	
+}
+.pagination span{
+	width: 16px;
+    height: 23px;
+    display: inline-block;
+    padding: 2px 13px 5px 12px;
+    background: #E8E5E5;
+}
+.next, .last{
+	width: 50px !important;
+}
+#tweet_date{
+	width: 45%;
+    height: 25px;
+    float: left;
+}
+#tweet_data{
+	width: 45%;
+    height: 25px;
+    float: right;
+}
+.top-searcharea{
+	height: 100px;
+    background: #eee;
+    padding: 19px;
+}
