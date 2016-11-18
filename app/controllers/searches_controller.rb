@@ -11,7 +11,7 @@ class SearchesController < ApplicationController
       else
         query=text_query
       end
-      @tweets = $twitter.search(query).first(10)
+      # @tweets = $twitter.search(query).first(10)
       @tweets = $twitter.search(query).to_a
       retweets = Array.new
       @tweets.each do |tweet|
