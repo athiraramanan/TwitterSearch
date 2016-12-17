@@ -11,16 +11,15 @@ class SearchesController < ApplicationController
       else
         query=text_query
       end
-      # @tweets = $twitter.search(query).first(10)
-      @tweets = $twitter.search(query).to_a
+      @tweets = $twitter.search(query).first(10)
+      # @tweets = $twitter.search(query).to_a
       retweets = Array.new
       @tweets.each do |tweet|
         retweets << tweet if tweet.retweeted_status.present?
+        p retweets
       end
       if @data_query == "Retweeted"
-        if retweets.count>=1
-          @tweets = retweets 
-        end
+        @tweets = retweets 
       end
       @searches = Kaminari.paginate_array(@tweets).page(params[:page]).per(10)  
     end
